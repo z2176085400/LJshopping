@@ -1,0 +1,13 @@
+
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ENC(D7QTSpYQOhgOQp3mVTjF0A==)
+    password: ENC(sMvhmneq5uSmkogtV6P3Fg==)
+    url: jdbc:mysql://localhost:3306/mall?serverTimezone=UTC&characterEncoding=UTF8
+    type: com.alibaba.druid.pool.DruidDataSource
+server:
+  port: 9901
+emailurl:
+  url: http://localhost:9901/message/checkEmail

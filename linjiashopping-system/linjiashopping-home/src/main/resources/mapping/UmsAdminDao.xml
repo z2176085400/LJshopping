@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkz.home.dao.UmsAdminDao">
+
+    <resultMap id="BaseResultDtoMap" type="com.zkz.home.dto.UserDto">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="icon" jdbcType="VARCHAR" property="icon" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="note" jdbcType="VARCHAR" property="note" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <collection property="nameList" ofType="com.zkz.model.UmsRole">
+            <result column="name" property="name"/>
+
+
+        </collection>
+    </resultMap>
+
+    <select id="getAllAdmin" resultMap="BaseResultDtoMap">
+      select
+    a.id, a.username, a.icon,a.email,a. nick_name, a.note, a.create_time, a.status,r.name
+    from ums_admin a inner join ums_admin_role_relation ar on ar.admin_id = a.id
+    inner join ums_role r on r.id = ar.role_id
+  </select>
+    <select id="getAdminById"  parameterType="java.lang.Integer" resultMap="BaseResultDtoMap">
+      select
+    a.id, a.username, a.icon,a.email,a. nick_name, a.note, a.create_time, a.status,r.name
+    from ums_admin a inner join ums_admin_role_relation ar on ar.admin_id = a.id
+    inner join ums_role r on r.id = ar.role_id
+    where a.id =#{id}
+  </select>
+</mapper>
